@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Artist;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,6 +23,7 @@ class SongFactory extends Factory
             'title' => fake()->sentence(2),
             'slug' => Str::slug(fake()->sentence()),
             'artist_id' => Artist::factory(),
+            'category_id' => Category::factory(),
         ];
     }
 }
