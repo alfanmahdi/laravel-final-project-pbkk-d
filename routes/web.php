@@ -1,13 +1,22 @@
 <?php
 
+use App\Models\Artist;
 use App\Models\Song;
+use App\Models\Songs;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', ['title' => 'Home Page']);
 });
 
-Route::get('/song', function () {
-    $songs = Song::with('artist')->get();
-    return view('song', ['title' => 'Song']);
+Route::get('/songs', function () {
+    return view('songs', ['title' => 'Songs', 'songs' => Song::all()]);
+});
+
+Route::get('/songs/{song:slug}', function(Song $song) {
+    return view('song', ['title' => 'Song', 'song' => $song]);
+});
+
+Route::get('/artists/{artist:username}', function(Artist $artist) {
+    return view('songs', ['title' => 'Songs by ' . $artist->name, 'songs' => $artist->songs]);
 });
