@@ -11,19 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('songs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->string('slug')->unique();
             $table->timestamps();
-            $table->foreignId('artist_id')->constrained(
-                table: 'artists',
-                indexName: 'songs_artist_id',
-            );
-            $table->foreignId('category_id')->constrained(
-                table: 'categories',
-                indexName: 'songs_category_id',
-            );
         });
     }
 
@@ -32,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('songs');
+        Schema::dropIfExists('categories');
     }
 };
