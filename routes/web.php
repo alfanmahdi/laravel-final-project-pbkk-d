@@ -3,13 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    return view('home', ['title' => 'Home Page']);
 });
 
-Route::get('/Artists', function () {
-    return view('Artists');
-});
-
-Route::get('/Songs', function () {
-    return view('Songs');
+Route::get('/song', function () {
+    return view('song', ['title' => 'Song']);
 });
