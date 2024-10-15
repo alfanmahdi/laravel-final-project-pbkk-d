@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Song;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,5 +8,6 @@ Route::get('/', function () {
 });
 
 Route::get('/song', function () {
+    $songs = Song::with('artist')->get();
     return view('song', ['title' => 'Song']);
 });
