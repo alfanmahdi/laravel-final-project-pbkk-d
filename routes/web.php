@@ -67,3 +67,25 @@ Route::post('/playlists/{playlist}/add-song', function (Request $request, Playli
     return redirect("/playlists/{$playlist->slug}")
         ->with('success', 'Song added to playlist successfully.');
 })->name('playlists.add-song');
+
+// Route to remove a song from a playlist
+Route::delete('/playlists/{playlist}/remove-song/{song}', function (Playlist $playlist, Song $song) {
+    // Remove the song from the playlist
+    $playlist->songs()->detach($song->id);
+
+    // Redirect back with success message
+    return redirect()->back()->with('success', 'Song removed from playlist successfully.');
+})->name('playlists.remove-song');
+
+// Route to update playlist description
+Route::put('/playlists/{playlist}/update-description', function (Request $request, Playlist $playlist) {
+    $request->validate([
+        'description' => 'required|string|max:500', // Adjust max length as needed
+    ]);
+
+    // Update the description
+    $playlist->description = $request->input('description');
+    $playlist->save();
+
+    return redirect()->back()->with('success', 'Description updated successfully.');
+})->name('playlists.update-description');

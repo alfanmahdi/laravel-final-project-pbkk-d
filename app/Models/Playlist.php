@@ -10,6 +10,12 @@ class Playlist extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'slug',
+        'description',
+    ];
+
     public function songs(): BelongsToMany
     {
         return $this->belongsToMany(Song::class, 'playlist_song')->withTimestamps();
