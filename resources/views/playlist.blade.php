@@ -5,10 +5,10 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
                 <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    Playlists
+                    Your Playlist
                 </h2>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Explore favorite playlists.
+                    Enjoy your playlist
                 </p>
             </div>
 
@@ -16,8 +16,8 @@
                 class="mx-auto mt-2 pt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-2 sm:pt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 <article class="flex max-w-xl flex-col items-start justify-between">
                     <div class="flex items-center gap-x-4 text-xs">
-                        <time datetime="{{ $playlist->updated_at->format('Y-m-d') }}" class="text-gray-500">
-                            Updated at {{ $playlist->updated_at->format('M d, Y') }}
+                        <time datetime="{{ $playlist->created_at }}" class="text-gray-500">
+                            Updated {{ $playlist->created_at->diffForHumans() }}
                         </time>
                     </div>
                     <div class="group relative">
