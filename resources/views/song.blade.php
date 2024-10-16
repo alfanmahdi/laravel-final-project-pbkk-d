@@ -25,7 +25,8 @@
                         </a>
                     </div>
                     <div class="group relative">
-                        <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                        <a href="/genres/{{ $song->category->slug }}" class="hover:underline text-xs">Genre: {{ $song->category->name }}</a>
+                        <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 hover:underline">
                             <a href="/songs/{{ $song['slug'] }}">
                                 {{ $song->title }}
                             </a>
