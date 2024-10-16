@@ -17,23 +17,23 @@ Route::get('/songs', function () {
     return view('songs', ['title' => 'Your Music', 'songs' => Song::all()]);
 });
 
-Route::get('/songs/{song:slug}', function(Song $song) {
+Route::get('/songs/{song:slug}', function (Song $song) {
     return view('song', ['title' => 'Single', 'song' => $song]);
 });
 
-Route::get('/artists/{artist:username}', function(Artist $artist) {
+Route::get('/artists/{artist:username}', function (Artist $artist) {
     return view('songs', ['title' => 'Music by ' . $artist->name, 'songs' => $artist->songs]);
 });
 
-Route::get('/genres/{category:slug}', function(Category $category) {
+Route::get('/genres/{category:slug}', function (Category $category) {
     return view('songs', ['title' => 'Genre: ' . $category->name, 'songs' => $category->songs]);
 });
 
-Route::get('/playlists', function() {
+Route::get('/playlists', function () {
     return view('playlists', ['title' => 'Your Playlists', 'playlists' => Playlist::all()]);
 });
 
-Route::get('/playlists/{playlist:slug}', function(Playlist $playlist) {
+Route::get('/playlists/{playlist:slug}', function (Playlist $playlist) {
     return view('playlist', ['title' => 'Playlist', 'playlist' => $playlist]);
 });
 
@@ -53,3 +53,17 @@ Route::post('/playlists', function (Request $request) {
     // Redirect back with success message
     return redirect('/playlists')->with('success', 'Playlist created successfully.');
 })->name('playlists.store');
+
+// Route untuk menambah lagu ke playlist
+Route::post('/playlists/{playlist}/add-song', function (Request $request, Playlist $playlist) {
+    // Validasi input
+    $request->validate([
+        'song_id' => 'required|exists:songs,id',
+    ]);
+
+    // Tambahkan lagu ke playlist (menghindari duplikat)
+    $playlist->songs()->syncWithoutDetaching($request->input('song_id'));
+
+    return redirect("/playlists/{$playlist->slug}")
+        ->with('success', 'Song added to playlist successfully.');
+})->name('playlists.add-song');
