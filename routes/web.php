@@ -5,6 +5,8 @@ use App\Models\Songs;
 use App\Models\Artist;
 use App\Models\Category;
 use App\Models\Playlist;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,3 +36,20 @@ Route::get('/playlists', function() {
 Route::get('/playlists/{playlist:slug}', function(Playlist $playlist) {
     return view('playlist', ['title' => 'Playlist', 'playlist' => $playlist]);
 });
+
+// Route to handle new playlist form submission
+Route::post('/playlists', function (Request $request) {
+    // Validate the form input
+    $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    // Create new playlist and generate slug
+    $playlist = new Playlist();
+    $playlist->name = $request->input('name');
+    $playlist->slug = Str::slug($request->input('name'));
+    $playlist->save();
+
+    // Redirect back with success message
+    return redirect('/playlists')->with('success', 'Playlist created successfully.');
+})->name('playlists.store');
