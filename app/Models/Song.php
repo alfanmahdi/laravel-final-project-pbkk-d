@@ -12,6 +12,8 @@ class Song extends Model
 
     protected $fillable = ['title', 'slug', 'artist_id'];
 
+    protected $with = ['artist', 'category'];
+
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
