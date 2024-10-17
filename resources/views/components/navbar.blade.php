@@ -1,9 +1,9 @@
-<nav class="bg-green-700" x-data="{ isOpen: false }">
+<nav class="bg-green-900" x-data="{ isOpen: false }">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
             <div class="flex items-center">
                 <div class="flex-shrink-0">
-                    <img class="h-8 w-8" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                    <img class="h-8 w-8" src="logo.png"
                         alt="Your Company">
                 </div>
                 <div class="hidden md:block">
