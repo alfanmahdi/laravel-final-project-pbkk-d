@@ -8,12 +8,11 @@
                     Song List
                 </h2>
                 <p class="mt-2 text-lg leading-8 text-gray-600">
-                    Explore the latest songs and their artists.
+                    Explore the latest songs and their artists
                 </p>
             </div>
-
             <div
-                class="mx-auto mt-2 pt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-2 sm:pt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                class="mx-auto mt-2 pt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 sm:mt-2 sm:pt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 @foreach ($songs as $song)
                     <article class="flex max-w-xl flex-col items-start justify-between">
                         <div class="flex items-center gap-x-4 text-xs">

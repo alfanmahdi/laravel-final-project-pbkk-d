@@ -58,7 +58,7 @@
                     <div class="mt-4">
                         <label for="song_id" class="block text-sm font-medium text-gray-700">Select Song:</label>
                         <select name="song_id" id="song_id" class="mt-1 block w-full bg-gray-100 rounded-md">
-                            @foreach ($playlist->songs as $song)
+                            @foreach (\App\Models\Song::all() as $song)
                                 <option value="{{ $song->id }}">{{ $song->title }} by {{ $song->artist->name }}</option>
                             @endforeach
                         </select>

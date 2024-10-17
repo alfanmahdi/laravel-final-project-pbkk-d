@@ -10,13 +10,9 @@
                 <p class="mt-2 text-lg leading-8 text-gray-600">
                     Explore favorite playlists
                 </p>
-
-                <!-- Button to create new playlist -->
                 <button id="createPlaylistBtn" class="mt-4 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
                     Create New Playlist
                 </button>
-
-                <!-- Hidden form to add new playlist -->
                 <div id="newPlaylistForm" class="mt-4 hidden">
                     <form action="{{ route('playlists.store') }}" method="POST">
                         @csrf
@@ -28,7 +24,6 @@
                             <button type="submit" class="mt-2 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
                                 Save Playlist
                             </button>
-                            <!-- Cancel button -->
                             <button type="button" id="cancelBtn" class="mt-2 bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">
                                 Cancel
                             </button>
@@ -36,15 +31,13 @@
                     </form>
                 </div>
             </div>
-
-            <!-- Existing playlists -->
             <div
-                class="mx-auto mt-2 pt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-2 sm:pt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                class="mx-auto mt-2 pt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 sm:mt-2 sm:pt-4 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                 @foreach ($playlists as $playlist)
                     <article class="flex max-w-xl flex-col items-start justify-between">
                         <div class="flex items-center gap-x-4 text-xs">
-                            <time datetime="{{ $playlist->created_at }}" class="text-gray-500">
-                                Updated {{ $playlist->created_at->diffForHumans() }}
+                            <time datetime="{{ $playlist->updated_at }}" class="text-gray-500">
+                                Updated {{ $playlist->updated_at->diffForHumans() }}
                             </time>
                         </div>
                         <div class="group relative">
@@ -64,15 +57,15 @@
         document.getElementById('createPlaylistBtn').addEventListener('click', function() {
             const form = document.getElementById('newPlaylistForm');
             const createButton = document.getElementById('createPlaylistBtn');
-            form.classList.remove('hidden'); // Show the form
-            createButton.classList.add('hidden'); // Hide "Create New Playlist" button
+            form.classList.remove('hidden');
+            createButton.classList.add('hidden');
         });
 
         document.getElementById('cancelBtn').addEventListener('click', function() {
             const form = document.getElementById('newPlaylistForm');
             const createButton = document.getElementById('createPlaylistBtn');
-            form.classList.add('hidden'); // Hide the form
-            createButton.classList.remove('hidden'); // Show "Create New Playlist" button
+            form.classList.add('hidden');
+            createButton.classList.remove('hidden');
         });
     </script>
 </x-layout>
